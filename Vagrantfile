@@ -11,14 +11,14 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize any other parameters
-  #   vb.customize [
-  #    'modifyvm',                :id,
-  #    '--memory',                '512',
-  #    '--cpus',                  '2',
-  #    '--paravirtprovider',      'kvm', # can be set to "paravirt"
-  #    '--ioapic',                'on', # turn on I/O APIC
-  #    '--natdnsproxy1',          'on',
-  #    '--natdnshostresolver1',   'on']
+    vb.customize [
+      'modifyvm',                :id,
+      '--memory',                '512',
+      '--cpus',                  '2',
+      '--paravirtprovider',      'kvm', # can be set to "paravirt"
+      '--ioapic',                'on', # turn on I/O APIC
+      '--natdnsproxy1',          'on',
+      '--natdnshostresolver1',   'on']
   #
   end
   # Disable automatic box update checking. If you disable this, then
@@ -55,24 +55,17 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "consul-001" do |web|
     web.vm.hostname = "consul-001.vagrant"
-    #web.hostsupdater.aliases = ["consul-001.vagrant"]
     web.vm.network "private_network", ip: "192.168.30.11"
-    # config.vm.provision "shell", path: "./install_consul.server.sh"
-    # config.vm.network "forwarded_port", guest: 80, host: 8080
   end
 
   config.vm.define "consul-002" do |web|
     web.vm.hostname = "consul-002.vagrant"
-    #web.hostsupdater.aliases = ["consul-002.vagrant"]
     web.vm.network "private_network", ip: "192.168.30.20"
-    # config.vm.provision "shell", path: "./install_consul.server.sh"
   end
 
   config.vm.define "consul-003" do |web|
     web.vm.hostname = "consul-003.vagrant"
-    #web.hostsupdater.aliases = ["consul-003.vagrant"]
     web.vm.network "private_network", ip: "192.168.30.30"
-    # config.vm.provision "shell", path: "./install_consul.server.sh"
   end
 
   # View the documentation for the provider you are using for more
